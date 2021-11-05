@@ -1,42 +1,56 @@
+arr = []
+sPoint = 0
+arrX = []
+arrY = []
+limit = 10**9
+arrY.append([0, -1, []])
+
 N, M = map(int, input().split())
-arry = []
-strg = []
-maxi = []
-test = 0
 
 for y in range(N):
-    minX = sys.maxsize
-    for x in input().split():
-        strg.append(int(x))
-        if x <= minX:
-            minX = x
-    arr.append(strg)
-    temp.clear()
+    arr.append([])
+    arrX.clear()
+    arrX.append(limit)
+    arrX.append(y)
+    arrX.append([])
 
-for x in range(M):
-    temp = 0
-    for y in range(N):
-        if arr[y][x] >= temp:
-            temp = arr[y][x]
-    maxi.append(temp)
+    #Перебор строки
+    for x, word in enumerate(input().split()):
+        point = int(word)
+        arr[y].append(point)
+        #Отбор минимальной точки в строке
+        if point < arrX[0]:
+            arrX.clear()
+            arrX.append(point)
+            arrX.append(y)
+            arrX.append([])
+            arrX[2].append(x)
+        #Добавляем повторяющиеся минимальные точки
+        elif point == arrX[0]:
+            arrX[2].append(x)
+    
+    #Отбор максимальной среди минимальной
+    
+    if arrX[0] > arrY[0][0]:
+        arrY.clear()
+        arrY.append(arrX.copy())
+    #Добавляем повторяющиеся максимальные точки
+    elif arrX[0] == arrY[0][0]:
+        arrY.append(arrX)
 
-for y in range(N):
-    for x in range(M):
-        if mini[y] == maxi[x]:
-            print(mini[x])
-            print(y, x)
-            test = 1
+#Проверка минимальных точек на максимальность в колонке
+for arrX in arrY:
+    for x in arrX[2]:
+        testCountY = 0
+        for y in range(N):
+            if arrX[0] >= arr[y][x]:
+                testCountY += 1
+        if testCountY >= N:
+            sPoint = arrX[0]
+            sPointY = arrX[1]
+            sPointX = x
             break
-    if test == 1:
-        break
 
-if test != 1:
-    print(0)
-
-
-#   5 4
-#   2 3 2 5
-#   1 2 1 3
-#   9 8 5 6
-#   3 4 3 4
-#   2 1 2 3
+print(sPoint)
+if sPoint > 0:
+    print(sPointY, sPointX)
