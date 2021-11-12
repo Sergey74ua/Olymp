@@ -1,36 +1,29 @@
-arr = []
-pos = [[0, 0]]
-maxY = tmpX = test = 0
-
 N, M = map(int, input().split())
-for y in range(N):
-    arr.append(list(map(int, input().split())))
+arr = []
+maxY = 0
+pos = 0
 
 for y in range(N):
+    row = list(map(int, input().split()))
+    arr.append(row)
     minX = 1000000000
     for x in range(M):
-        if arr[y][x] < minX:
-            minX = arr[y][x]
-            tmpX = x
+        if row[x] < minX:
+            minX = row[x]
     if minX > maxY:
         maxY = minX
-        pos.clear()
-        pos.append([y, tmpX])
-    elif minX == maxY:
-        pos.append([y, tmpX])
+        pos = y
 
-for i in pos:
-    for y in range(N):
-        if maxY < arr[y][i[1]]:
-            test = 0
-            break
-        else:
-            test += 1
-    if test >= N:
-        print(maxY)
-        print(i[0], i[1])
-        maxY = False
-        break
+for x in range(M):
+    if maxY == arr[pos][x]:
+        for y in range(N):
+            if maxY < arr[y][x]:
+                break
+            if y == N - 1:
+                print(maxY)
+                print(pos, x)
+                maxY = 0
+                break
 
 if maxY:
     print(0)
