@@ -15,6 +15,7 @@ for i in range(t):
     sRight = int((sLeftCol + sRightCol2) * v2 / 2)
     rLeft = min(abs(ps - sLeft), abs(ps - (s-sLeft)))
     rRight = min(abs(ps - sRight), abs(ps - (s - sRight)))
+    
     if rLeft <= rRight:
         minLR = rLeft
         minV = v
@@ -22,12 +23,13 @@ for i in range(t):
         minLR = rRight
         minV = v2
     
-    h = n // 2 * 0 + int(n * 0.7066667) #####################
+    h = round(n * 0.7066667)
     h2 = h + 1
     sTop = int((1 + h * m) * h * m / 2)
     sBottom = int((1 + h2 * m) * h2 * m / 2)
     rTop = min(abs(ps - sTop), abs(ps - (s - sTop)))
     rBottom = min(abs(ps - sBottom), abs(ps - (s - sBottom)))
+    
     if rTop <= rBottom:
         minTB = rTop
         minH = h
