@@ -1,18 +1,20 @@
+
 x = input()
 k = input()
 
 if k == '0':
+    n = x[0]
     for i in x:
-        if i == x[0]:
+        if i == n:
             continue
-        elif i < x[0]:
+        elif i < n:
             break
         else:
-            x[0] = str(int(x[0]) + 1)
+            n = str(int(n) + 1)
             break
     k = ''
     for i in x:
-        k = k + x[0]
+        k = k + n
 else:
     while True:
         if max(x.count(x[0]), x.count(x[-1])) >= len(x) - 1:
