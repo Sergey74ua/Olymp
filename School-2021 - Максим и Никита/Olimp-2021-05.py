@@ -8,6 +8,7 @@ arr = []
 for i in arrN:
     for j in arrM:
         arr.append(i + j)
+        #вставка в массив с бинарным поиском позиции
        
 arr.sort()
 
