@@ -1,22 +1,21 @@
-arr = []
 N = int(input())
-L = (N - 1) * 4
-for i in range((N - 1) // 2):
-    arr.append([])
-    for j in range(L):
-        arr[i].append(j + 1)
-    L -= 8
-
+arr = [0] * ((N - 1) // 2)
 T = int(input())
 for i in range(T):
     K, S = map(int, input().split())
-    L = len(arr[K - 1])
-    for j in range(L):
-        arr[K - 1][j] = (arr[K - 1][j] - S - 1) % L + 1
+    arr[K-1] = (arr[K-1] + S) % ((N - 1) * 4 - (K - 1) * 8)
 
-arrQ = [[0] * N] * N
+matrix = [[1] * N] * N
 
-#переброска из одного массива в другой (4 хода)
+for i in range(len(arr)):
+    tN = N - i * 2
+    L = (tN - 1) * 4
+    for x in range(tN - 1):
+        matrix[i][(N - tN) // 2 + x] = 88 #(x - arr[i]) % L ПРОБЛЕМА С Х т.е. с    N - tN + x
+    #    matrix[N - i][N - tN + x] = (L - x - arr[i]) % L
+    #for y in range(tN - 1):
+    #    matrix[y][i] = (L - y * (tN - 2) - arr[i]) % L
+    #    matrix[y][tN - i] = (y * (tN - 2) - arr[i]) % L
 
-for i in arrQ:
+for i in matrix:
     print(*i)
