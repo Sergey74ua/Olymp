@@ -1,7 +1,6 @@
 n = int(input())
 arr = list(map(int, input().split()))
 s = 0
-res = []
 q = int(input())
 for i in range(q):
     line = list(map(int, input().split()))
@@ -13,6 +12,13 @@ for i in range(q):
         #for j in range(n):
         #    temp[j] = arr[(j - line[1]) % n]
         #arr = temp
-    res.append(sum(arr))
-for i in res:
-    print(i)
+    print(sum(arr))
+
+# 6
+# 4 1 2 1 5 3
+# 5
+# 2 3
+# 1 3 10
+# 1 4 4
+# 2 1
+# 1 1 -10
