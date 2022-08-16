@@ -1,11 +1,16 @@
 A, B=map(int, input().split())
 s=min(A%B, B-A%B)
-mini=s
+m=s
 for i in range(s):
-    for j in range(i):
-        if (A+j)%(B+(i-j))==0 or (A+j)%(B-(i-j))==0 or (A-j)%(B+(i-j))==0 or (A-j)%(B-(i-j))==0:
-            mini=i
+    Bp=B+i
+    Bm=B-i
+    ApBp=A%Bp+i
+    AmBp=Bp-A%Bp+i
+    ApBm=A%Bm+i
+    AmBm=Bm-A%Bm+i
+    t=min(ApBp, AmBp, ApBm, AmBm)
+    if t<m:
+        m=t
+        if m==0:
             break
-    if mini<s:
-        break
-print(mini)
+print(m)
