@@ -2,11 +2,10 @@ N, M=map(int, input().split())
 arr=[]
 st=r=0
 for i in range(N):
-    row=list(map(int, input().split()))
-    arr.append(row)
+    arr.append(list(map(int, input().split())))
     m=1e10
     for x in range(M):
-        m=min(m, row[x])
+        m=min(m, arr[i][x])
     if m>st:
         st,y=m,i
 for x in range(M):
