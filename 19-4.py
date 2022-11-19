@@ -13,13 +13,10 @@ for i in range(N):
 
 def maximum(arr):
     arr.sort()
-    
+
     max_counter = 0
     last = 0
-    
-    for i in arr:
-        pass
-    
+
     for i in arr:
         if i != last:
             counter = 1
@@ -32,7 +29,7 @@ def maximum(arr):
                 max_symbol = i
 
     return max_symbol, max_counter, last_counter
-    
+
 max_symbol_1, max_counter_1, last_counter_1 = maximum(arr1)
 max_symbol_2, max_counter_2, last_counter_2 = maximum(arr2)
 
