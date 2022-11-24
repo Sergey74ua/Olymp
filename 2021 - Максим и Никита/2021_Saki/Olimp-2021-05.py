@@ -5,20 +5,26 @@ M=int(input())
 arrM=list(map(int, input().split()))
 arrM.sort()
 K=int(input())
-n=m=0
-print()
-print(arrN)
-print(arrM)
-print()
-while n+m<K:
-    s=arrN[n]+arrM[m]
-    print(n, m, ' - ', arrN[n], arrM[m], ' - ', s) # ПРОПУСКИ, не каждое с каждым суммируется.
-    if arrN[n+1]+arrM[m]<=arrN[n]+arrM[m+1]:
-        n+=1
+N, M=min(N, K), min(M, K)
+arrN=arrN[:N]
+arrM=arrM[:M]
+posN=[0]*N
+L=0
+for i in range(K):
+    t=arrN[-1]+arrM[-1]
+    for j in range(L, N):
+        s=arrN[j]+arrM[posN[j]]
+        if s<t:
+            t=s
+            p=j
+        #if posN[j]==0:
+        #    break
+    r=s
+    if p>=M:
+        L+=1
     else:
-        m+=1
-print(s)
-
+        posN[p]+=1
+print(r)
 
 # Неполное решение - 36 Превышено максимальное время работы >3.000  0 (1)
 #N = int(input())
