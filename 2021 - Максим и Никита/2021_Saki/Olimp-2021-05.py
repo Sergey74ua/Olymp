@@ -1,30 +1,41 @@
 N=int(input())
 arrN=list(map(int, input().split()))
-arrN.sort()
 M=int(input())
 arrM=list(map(int, input().split()))
-arrM.sort()
 K=int(input())
-N, M=min(N, K), min(M, K)
-arrN=arrN[:N]
-arrM=arrM[:M]
-posN=[0]*N
-L=0
-for i in range(K):
-    t=arrN[-1]+arrM[-1]
-    for j in range(L, N):
-        s=arrN[j]+arrM[posN[j]]
-        if s<t:
-            t=s
-            p=j
-        #if posN[j]==0:
-        #    break
-    r=s
-    if p>=M:
-        L+=1
+
+sumN=sumM=0
+countN=countM=0
+minN=minM=0
+lostN=lostM=-1
+
+while sumN*sumM<=K: #Выбирает меньшие значения, а не меньшую сумму
+    if countN==0:
+        minN=int(1e9)+1
+        for j in range(N):
+            if lostN<arrN[j]<minN:
+                minN=arrN[j]
+                countN=1
+            elif arrN[j]==minN:
+                countN+=1
+    if countM==0:
+        minM=int(1e9)+1
+        for j in range(M):
+            if lostM<arrM[j]<minM:
+                minM=arrM[j]
+                countM=1
+            elif arrM[j]==minM:
+                countM+=1
+    if minN<=minM:
+        lostN=minN
+        sumN+=countN
+        countN=0
     else:
-        posN[p]+=1
-print(r)
+        lostM=minM
+        sumM+=countM
+        countM=0
+    print(minN, minM, minN+minM)
+print(minN+minM)
 
 # Неполное решение - 36 Превышено максимальное время работы >3.000  0 (1)
 #N = int(input())
