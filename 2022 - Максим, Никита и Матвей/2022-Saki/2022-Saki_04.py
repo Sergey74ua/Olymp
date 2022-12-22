@@ -1,10 +1,11 @@
 import math
 N=int(input())
 r=1
-for i in range(2, int((N)**0.5)+1):
-  s=round(math.log(N, i))
-  if i**s==N:
-    r=s
+s=3 if N & 1 else 2 #ускоряет в два раза, но не помогает
+for i in range(s, int((N)**0.5)+1, 2):
+  p=round(math.log(N, i))
+  if i**p==N:
+    r=p
     break
 print(r)
 
